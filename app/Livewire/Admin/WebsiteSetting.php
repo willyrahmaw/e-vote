@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 
 #[Layout('layouts.admin')]
@@ -32,7 +33,10 @@ class WebsiteSetting extends Component
     public ?string $app_favicon = null;
 
     // File Uploads
+    /** @var TemporaryUploadedFile|null */
     public $logoUpload = null;
+
+    /** @var TemporaryUploadedFile|null */
     public $faviconUpload = null;
 
     // Contact & Support
