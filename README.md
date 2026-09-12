@@ -1,71 +1,93 @@
-# 🗳️ Flexible E-Voting System (Sistem E-Voting Modern)
+# 🗳️ Flexible E-Voting System (Sistem E-Voting Terpadu)
 
-Sistem Pemilihan Elektronik (*E-Voting*) modern, aman, fleksibel, dan transparan yang dibangun dengan arsitektur enterprise menggunakan **Laravel 13**, **Livewire 4**, dan **Tailwind CSS v4**.
+[![Laravel](https://img.shields.io/badge/Laravel-13.x-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
+[![Livewire](https://img.shields.io/badge/Livewire-4.x-FB70A9?style=for-the-badge&logo=livewire)](https://livewire.laravel.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com)
+[![PHP](https://img.shields.io/badge/PHP-8.3%2B-777BB4?style=for-the-badge&logo=php)](https://php.net)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 
-Dirancang untuk berbagai skala pemilihan (Organisasi Mahasiswa / BEM / DPM, Organisasi Kemasyarakatan, Yayasan, hingga Perusahaan) dengan integritas data tinggi dan perlindungan privasi pemilih yang ketat.
+Sistem Pemilihan Elektronik (*E-Voting*) modern, aman, fleksibel, dan transparan yang dirancang dengan arsitektur enterprise menggunakan **Laravel 13**, **Livewire 4**, dan **Tailwind CSS v4**.
+
+Sangat cocok untuk berbagai skala pemilihan:
+- 🎓 **Kampus & Sekolah**: Pemilihan Ketua/Wakil BEM, DPM, Himpunan Mahasiswa (HIMA), Ketua OSIS/MPK.
+- 🏢 **Organisasi & Komunitas**: Musyawarah Nasional (Munas), Ikatan Alumni, Yayasan, Koperasi.
+- 🏛️ **Perusahaan & Lembaga**: Pemilihan Dewan Pengawas, Serikat Pekerja, Komite Internal.
 
 ---
 
 ## 🌟 Fitur Utama
 
 ### 1. 🛡️ Keamanan & Privasi Tingkat Tinggi
-- **Zero-Knowledge Ballot Privacy**: Pilihan pemilih pada surat suara sama sekali tidak dihubungkan langsung ke ID pengguna di database, menjamin kerahasiaan pilihan (LUBER - Langsung, Umum, Bebas, Rahasia).
-- **Anti-Double Voting**: Dilengkapi proteksi transaksi database dengan *Row-Level Locking* (`lockForUpdate`) untuk mencegah duplikasi suara secara konkruen.
-- **Ballot Verification Token**: Setiap pemilih mendapatkan token unik terenkripsi/hash untuk memverifikasi secara mandiri bahwa surat suaranya telah sah terhitung di sistem tanpa membocorkan pilihannya.
+- **Zero-Knowledge Ballot Privacy**: Pilihan surat suara pemilih sama sekali tidak dihubungkan langsung ke ID pengguna di database (*decoupled anonymous ballot*), menjamin asas **LUBER** (Langsung, Umum, Bebas, Rahasia).
+- **Double-Vote Protection**: Dilengkapi transaksi database dengan *Row-Level Locking* (`lockForUpdate`) untuk mencegah duplikasi suara secara konkruen.
+- **Ballot Verification Token (`/verify/{token?}`)**: Setiap pemilih mendapatkan tanda terima berupa token unik terenkripsi (*cryptographic receipt token*) untuk memverifikasi secara mandiri bahwa suaranya telah sah terhitung di sistem tanpa membocorkan isi pilihannya.
 
-### 2. 🏛️ Format Pemilihan yang Sangat Fleksibel
-- **Pasangan Calon (Group/Paslon)**: Cocok untuk pemilihan Presiden/Wakil Presiden Mahasiswa, Ketua/Wakil Ketua Umum.
-- **Multi-Posisi (Jabatan Majemuk)**: Pemilih dapat memilih beberapa kandidat untuk berbagai posisi jabatan sekaligus dalam satu sesi surat suara (contoh: Ketua Fraksi, Sekretaris Jenderal, Anggota Dewan).
-- **Kandidat Tunggal / Opsi Abstain / Kotak Kosong**: Konfigurasi suara abstain dan batas minimal/maksimal pilihan pada setiap jabatan.
+### 2. 🏛️ Format Pemilihan Fleksibel (Single & Multi-Position)
+- **Format Pasangan Calon (Paslon/Group)**: Pasangan Calon Ketua & Calon Wakil Ketua lengkap dengan foto, slogan, visi, dan misi terstruktur.
+- **Format Jabatan Majemuk (Multi-Position)**: Pemilih dapat memilih kandidat untuk beberapa posisi jabatan sekaligus dalam satu sesi surat suara.
+- **Visi & Misi Interaktif**: Calon pemilih dapat membaca visi, misi, dan profil lengkap kandidat melalui modal popup sebelum mencoblos.
 
-### 3. 📊 Hasil Real-Time & Layar Monitor TV (Kiosk Mode)
-- **Live Voting Dashboard**: Grafik perolehan suara *real-time* berbasis persentase, total suara masuk, dan tingkat partisipasi pemilih.
-- **Standalone Big Screen Kiosk (`/screen/{election}`)**: Tampilan layar penuh tanpa menu bar, dioptimalkan untuk monitor/proyektor di panggung penghitungan suara terbuka.
+### 3. 📊 Layar Monitor Kiosk Real-Time (`/screen`)
+- **Hub Sesi Pemilihan**: Akses `/screen` untuk melihat seluruh katalog sesi pemilihan aktif.
+- **Layar Monitor Panggung / TV Projector (`/screen/{slug}`)**: Tampilan layar penuh tanpa menu bar (*clean kiosk mode*) yang menampilkan grafik perolehan suara *real-time*, persentase partisipasi pemilih, jam digital 3 zona waktu, dan animasi podium pemimpin suara.
 
-### 4. 🔍 Transparansi & Audit Trail
-- **Audit Log Lengkap**: Mencatat setiap aktivitas penting sistem (pembuatan pemilihan, perubahan status, login, rekapitulasi) beserta User ID, IP Address, dan Metadata.
-- **Laporan & Rekapitulasi Pemilu**: Halaman rekapitulasi komprehensif untuk berita acara pemilihan dan ekspor data hasil akhir.
+### 4. 🇮🇩 Dukungan 3 Zona Waktu Indonesia
+- **WIB** – *Waktu Indonesia Barat* (`Asia/Jakarta`, UTC+7)
+- **WITA** – *Waktu Indonesia Tengah* (`Asia/Makassar`, UTC+8)
+- **WIT** – *Waktu Indonesia Timur* (`Asia/Jayapura`, UTC+9)
+- Zona waktu dapat diatur secara dinamis di Pengaturan Website dan otomatis diterapkan ke seluruh tampilan waktu, jam digital monitor, bukti suara, dan berita acara.
 
-### 5. 👥 Manajemen Pemilih & Kandidat
-- **Data Pemilih Tetap (DPT)**: Manajemen voter per pemilihan dengan status kelayakan (*eligibility*) dan status partisipasi (*has voted*).
-- **Election Wizard**: Alur interaktif step-by-step untuk membuat pemilihan baru, konfigurasi tanggal & jadwal, posisi, dan paslon/kandidat.
+### 5. 👥 Manajemen Pemilih (DPT) & Import Massal CSV
+- **Import Massal DPT via CSV**: Unggah ribuan data pemilih (Nama, Email, NIM/NIK, Password kustom/default) dalam hitungan detik.
+- **Unduh Template CSV**: Template berkas CSV bawaan sistem untuk memudahkan panitia.
+- **Kontrol Hak Suara**: Fitur pencabutan/pengaktifan kembali hak suara dengan dialog konfirmasi SweetAlert2.
+
+### 6. 🎨 Full Custom Branding & White-Label
+- **Upload Logo Brand & Favicon**: Mendukung format PNG, JPG, SVG, WebP, dan ICO.
+- **Kustomisasi Identitas**: Mengubah Nama Aplikasi, Nama Lembaga/Penyelenggara, Tagline, dan Teks Hak Cipta Footer langsung dari portal admin.
+
+### 7. 📜 Berita Acara & Laporan Resmi Pemilu
+- **Cetak Berita Acara Resmi (A4 Ready)**: Halaman rekapitulasi hasil penghitungan suara resmi (`/admin/elections/{id}/report`) lengkap dengan nomor surat, kop dinas, rincian suara sah, dan *SHA-256 Integrity Checksum*.
+- **Audit Log Keamanan**: Jejak audit komprehensif mencatat setiap aktivitas penting sistem beserta User, IP Address, dan Metadata.
 
 ---
 
-## 🏗️ Pola Arsitektur
+## 🏗️ Pola Arsitektur (Clean Architecture)
 
-Aplikasi ini mengadopsi prinsip **Clean Architecture & Domain-Driven Design (DDD) ringan**:
+Aplikasi dibangun dengan prinsip **Clean Architecture & Domain-Driven Design (DDD) ringan**:
 
-- **Thin Livewire Components & Controllers**: Komponen UI hanya bertugas menangani *request validation*, otorisasi, dan memanggil aksi/layanan domain.
-- **Single-Use Action Classes (`app/Actions`)**: Mengenkapsulasi alur bisnis utama (misal: `SubmitBallotAction`, `CreateElectionAction`, `ActivateElectionAction`).
-- **Domain Services (`app/Services`)**: Logika bisnis reusable (misal: `VotingService`, `ResultService`, `AuditLogService`, `CandidateService`).
-- **Typed Readonly DTOs (`app/DTOs`)**: Transfer data yang aman dan bertipe antar-layer (misal: `SubmitBallotData`, `CreateElectionData`).
-- **Query Objects (`app/Queries`)**: Agregasi data kompleks dan analitik (misal: `GetElectionResults`, `GetLiveVotingStatistics`).
-- **UUID Primary Keys**: Semua entitas utama menggunakan UUID untuk mencegah *enumeration attack*.
+- **Thin Livewire Components**: Menerima request -> validasi -> otorisasi -> memanggil Action / Service -> response.
+- **Single-Use Action Classes (`app/Actions`)**: Mengenkapsulasi alur transaksi bisnis (misal: `SubmitBallotAction`, `CreateElectionAction`, `UpdateWebsiteSettingsAction`, `ImportVotersAction`).
+- **Domain Services (`app/Services`)**: Layanan reusable (misal: `VotingService`, `ResultService`, `AuditLogService`, `SettingService`, `ElectionReportService`).
+- **Typed Readonly DTOs (`app/DTOs`)**: Transfer data yang aman dan bertipe antar-layer.
+- **Query Objects (`app/Queries`)**: Query analitik dan agregasi data kompleks (misal: `GetElectionResults`, `GetLiveVotingStatistics`, `GetElectionVoters`).
+- **UUID Primary Keys**: Semua entitas utama menggunakan UUID untuk keamanan maksimal.
+- **Zero Inline Scripts/Styles**: Seluruh CSS/JS terpusat di `public/css` dan `public/js`.
 
 ---
 
 ## 🛠️ Tech Stack
 
 - **Backend**: [PHP 8.3+](https://www.php.net/), [Laravel 13](https://laravel.com/)
-- **Frontend / Reactivity**: [Livewire 4](https://livewire.laravel.com/), Alpine.js
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/), Vite
-- **Database**: SQLite (default untuk development) / MySQL 8.0+ / PostgreSQL 15+
+- **Frontend & Reaktivitas**: [Livewire 4](https://livewire.laravel.com/), [Alpine.js](https://alpinejs.dev/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **UI Dialogs & Icons**: [SweetAlert2](https://sweetalert2.github.io/), [FontAwesome 6 Free](https://fontawesome.com/)
+- **Database**: MySQL 8.0+ / SQLite (development) / PostgreSQL 15+
 
 ---
 
 ## 🚀 Panduan Instalasi & Menjalankan
 
 ### Persyaratan Sistem
-- PHP `>= 8.3` (dengan ekstensi: `pdo`, `sqlite3`, `mbstring`, `openssl`, `curl`)
+- PHP `>= 8.3` (ekstensi: `pdo`, `sqlite3`/`pdo_mysql`, `mbstring`, `openssl`, `curl`, `fileinfo`)
 - Composer `>= 2.x`
 - Node.js `>= 18.x` & NPM
 
-### Langkah-langkah:
+### Langkah-langkah Instalasi:
 
-1. **Clone Repositori & Masuk ke Direktori Proyek**:
+1. **Clone Repositori**:
    ```bash
-   git clone <repository-url>
+   git clone git@github.com:willyrahmaw/e-vote.git
    cd e-vote
    ```
 
@@ -76,33 +98,28 @@ Aplikasi ini mengadopsi prinsip **Clean Architecture & Domain-Driven Design (DDD
    ```
 
 3. **Konfigurasi Environment**:
-   Salin file `.env.example` menjadi `.env`:
    ```bash
    cp .env.example .env
    php artisan key:generate
    ```
 
-4. **Migrasi Database & Seeder**:
-   Jalankan migrasi tabel dan seed data awal:
+4. **Buat Storage Symlink**:
+   ```bash
+   php artisan storage:link
+   ```
+
+5. **Migrasi Database & Seeder**:
    ```bash
    touch database/database.sqlite  # jika menggunakan SQLite
    php artisan migrate --seed
    ```
 
-5. **Jalankan Server Development**:
-   Jalankan server aplikasi dan Vite asset bundler:
+6. **Jalankan Server Development**:
    ```bash
-   # Opsi 1: Jalankan secara bersamaan menggunakan Composer Dev Script
-   composer run dev
-
-   # Opsi 2: Jalankan terpisah di dua terminal
-   # Terminal 1:
+   # Jalankan server aplikasi
    php artisan serve
-   # Terminal 2:
-   npm run dev
    ```
-
-6. Akses aplikasi melalui browser di: `http://localhost:8000`
+   Buka browser di: `http://localhost:8000`
 
 ---
 
@@ -110,43 +127,45 @@ Aplikasi ini mengadopsi prinsip **Clean Architecture & Domain-Driven Design (DDD
 
 Data seeder menyediakan akun berikut untuk pengujian:
 
-| Role | Email | Password | Identitas / NIM | Keterangan |
+| Role | Email / Akun | Password | Identitas / NIM | Akses & Keterangan |
 | :--- | :--- | :--- | :--- | :--- |
-| **Administrator** | `admin@example.com` | `password` | `ADM-001` | Akses penuh portal admin, audit log, manajemen kandidat & wizard pemilihan |
-| **Pemilih (Voter)** | `voter@example.com` | `password` | `MHS-2026001` | Akun pemilih aktif (belum memilih, siap uji coba voting) |
-| **Voters Tambahan** | `voter2@example.com` s.d `voter25@example.com` | `password` | `MHS-2026002` dst. | Akun simulasi partisipasi pemilih |
+| **Administrator** | `admin@example.com` | `password` | `ADM-001` | Akses penuh dashboard admin, wizard pemilihan, DPT, laporan & pengaturan |
+| **Pemilih (Voter)** | `voter@example.com` | `password` | `MHS-2026001` | Akun pemilih aktif (belum memilih, siap uji coba bilik suara) |
+| **Pemilih 2 - 25** | `voter2@example.com` s/d `voter25@example.com` | `password` | `MHS-2026002` dst. | Akun simulasi partisipasi pemilih massal |
 
 ---
 
-## 🗺️ Peta Navigasi & Rute Utama
+## 🗺️ Peta Rute Aplikasi
 
 ### 🔓 Akses Publik & Kiosk
-- `/login` : Halaman autentikasi login terpadu
-- `/screen/{election}` atau `/live/{election}` : **Layar Besar / TV Monitor Kiosk** hasil perolehan suara *real-time*
-- `/verify/{token?}` : **Halaman Verifikasi Surat Suara Terbuka** (Zero-Knowledge Verifier)
-- `/live-results/{election}` : Halaman hasil publik
+- `/login` : Autentikasi masuk pengguna (mendukung Email atau NIM/NIK)
+- `/screen` : Hub katalog layar monitor pemilihan
+- `/screen/{election}` : **Layar Besar / TV Projector Kiosk** penghitungan suara realtime
+- `/verify/{token?}` : **Verifikasi Surat Suara Independen** (Zero-Knowledge Verifier)
 
 ### 🛡️ Portal Administrator (`/admin/*`)
 - `/admin/dashboard` : Ringkasan statistik pemilihan, DPT, dan tingkat partisipasi
-- `/admin/elections` : Manajemen daftar pemilihan, aktivasi, dan penutupan suara
-- `/admin/elections/wizard` : Wizard pembuatan pemilihan baru
-- `/admin/candidates` : Manajemen master data kandidat
-- `/admin/voters` : Manajemen data pemilih tetap (DPT) & generator akun pemilih
+- `/admin/elections` : Manajemen daftar pemilihan, aktivasi, penutupan, & hapus sesi
+- `/admin/elections/wizard` : Wizard pembuatan pemilihan step-by-step
+- `/admin/elections/{id}/report` : Berita Acara & Rekapitulasi Hasil Resmi (A4 Printable)
+- `/admin/candidates` : Master data kandidat dan pasangan calon
+- `/admin/voters` : Manajemen DPT & Import Massal CSV
 - `/admin/live-voting` : Monitoring grafik dan quick count langsung
-- `/admin/audit-logs` : Catatan log aktivitas dan jejak audit keamanan
-- `/admin/settings` : Pengaturan profil organisasi & sistem
+- `/admin/audit-logs` : Log aktivitas dan audit keamanan sistem
+- `/admin/settings` : Pengaturan logo, favicon, zona waktu, identitas lembaga, & fitur
 
 ### 🗳️ Portal Pemilih (`/portal/*`)
-- `/portal/dashboard` : Daftar pemilihan aktif dan riwayat partisipasi
-- `/portal/elections/{election}/vote` : Bilik suara digital (*Ballot Box*) interaktif
+- `/portal/dashboard` : Daftar pemilihan aktif & riwayat partisipasi DPT
+- `/portal/profile` : Kelola profil pemilih & ubah password
+- `/portal/elections/{election}/vote` : Bilik suara digital interaktif (*Ballot Box*)
 - `/portal/elections/{election}/success` : Bukti tanda terima suara beserta **Verification Token**
-- `/portal/elections/{election}/results` : Halaman hasil perolehan suara setelah memilih
+- `/portal/elections/{election}/results` : Halaman hasil quick count (jika diizinkan)
 
 ---
 
-## 🧪 Menjalankan Pengujian (Testing)
+## 🧪 Pengujian Otomatis (Automated Testing)
 
-Untuk memastikan seluruh alur bisnis, proteksi anti-double vote, dan kalkulasi suara berjalan sesuai standar:
+Aplikasi dilengkapi unit test dan feature test komprehensif untuk memastikan validasi surat suara, integritas data, proteksi double-vote, dan keamanan otorisasi:
 
 ```bash
 php artisan test
