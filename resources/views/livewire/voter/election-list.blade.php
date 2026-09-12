@@ -147,7 +147,7 @@
                             <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100 text-xs text-slate-600 flex items-center justify-between gap-2">
                                 <div class="flex items-center gap-2 truncate">
                                     <i class="fa-regular fa-clock text-slate-400"></i>
-                                    <span class="truncate">Selesai: {{ $election->end_at->format('d M Y, H:i') }}</span>
+                                    <span class="truncate">Selesai: {{ $election->end_at->format('d M Y, H:i') }} {{ \App\Enums\IndonesianTimezone::currentAbbr() }}</span>
                                 </div>
                                 <span class="px-2 py-0.5 rounded-md bg-white border border-slate-200/80 text-[10px] font-bold text-slate-700 shrink-0">
                                     {{ $candidateCount }}

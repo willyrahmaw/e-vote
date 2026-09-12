@@ -215,17 +215,38 @@
                         ></textarea>
                     </div>
 
-                    <div>
-                        <label for="footer_copyright" class="block text-xs font-semibold text-slate-700 mb-1.5">
-                            Teks Hak Cipta / Footer
-                        </label>
-                        <input 
-                            type="text" 
-                            id="footer_copyright" 
-                            wire:model="footer_copyright"
-                            placeholder="Contoh: Sistem E-Voting Terdesentralisasi & Anonim."
-                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-blue-500 text-xs text-slate-900 focus:outline-hidden focus:ring-3 focus:ring-blue-100 transition"
-                        />
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="app_timezone" class="block text-xs font-semibold text-slate-700 mb-1.5 flex items-center gap-1.5">
+                                <i class="fa-solid fa-clock text-blue-600"></i>
+                                <span>Zona Waktu Indonesia</span> <span class="text-rose-500">*</span>
+                            </label>
+                            <select 
+                                id="app_timezone" 
+                                wire:model="app_timezone"
+                                class="w-full px-3.5 py-2.5 rounded-xl border {{ $errors->has('app_timezone') ? 'border-rose-400' : 'border-slate-300 focus:border-blue-500' }} text-xs text-slate-900 bg-white focus:outline-hidden focus:ring-3 focus:ring-blue-100 transition font-medium"
+                            >
+                                <option value="Asia/Jakarta">WIB - Waktu Indonesia Barat (UTC+7)</option>
+                                <option value="Asia/Makassar">WITA - Waktu Indonesia Tengah (UTC+8)</option>
+                                <option value="Asia/Jayapura">WIT - Waktu Indonesia Timur (UTC+9)</option>
+                            </select>
+                            @error('app_timezone')
+                                <p class="text-rose-500 text-[11px] mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <label for="footer_copyright" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                Teks Hak Cipta / Footer
+                            </label>
+                            <input 
+                                type="text" 
+                                id="footer_copyright" 
+                                wire:model="footer_copyright"
+                                placeholder="Contoh: Sistem E-Voting Terdesentralisasi & Anonim."
+                                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-blue-500 text-xs text-slate-900 focus:outline-hidden focus:ring-3 focus:ring-blue-100 transition"
+                            />
+                        </div>
                     </div>
                 </div>
 

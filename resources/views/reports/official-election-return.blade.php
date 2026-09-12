@@ -74,7 +74,7 @@
             </p>
             <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
                 <p class="font-bold text-slate-900 text-sm">{{ $election->name }}</p>
-                <p class="text-xs text-slate-600 mt-0.5">Periode Pelaksanaan: {{ $election->start_at->format('d M Y H:i') }} s/d {{ $election->end_at->format('d M Y H:i T') }}</p>
+                <p class="text-xs text-slate-600 mt-0.5">Periode Pelaksanaan: {{ $election->start_at->format('d M Y H:i') }} s/d {{ $election->end_at->format('d M Y H:i') }} {{ \App\Enums\IndonesianTimezone::currentAbbr() }}</p>
             </div>
         </div>
 

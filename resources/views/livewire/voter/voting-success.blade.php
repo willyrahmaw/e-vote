@@ -29,7 +29,7 @@
 
             <div class="flex items-center justify-between">
                 <span class="text-slate-500">Waktu Pencoblosan:</span>
-                <strong class="text-slate-900">{{ now()->format('d M Y, H:i:s T') }}</strong>
+                <strong class="text-slate-900">{{ now()->format('d M Y, H:i:s') }} {{ \App\Enums\IndonesianTimezone::currentAbbr() }}</strong>
             </div>
 
             <div class="flex items-center justify-between">

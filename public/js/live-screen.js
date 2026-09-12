@@ -7,13 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!clockEl && !dateEl) return;
 
         const now = new Date();
+        const tzAbbr = clockEl ? (clockEl.getAttribute('data-timezone-abbr') || 'WIB') : 'WIB';
+
         if (clockEl) {
             clockEl.textContent = now.toLocaleTimeString('id-ID', {
                 hour12: false,
                 hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit'
-            });
+            }) + ' ' + tzAbbr;
         }
         if (dateEl) {
             dateEl.textContent = now.toLocaleDateString('id-ID', {

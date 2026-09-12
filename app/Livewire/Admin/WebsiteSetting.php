@@ -26,6 +26,7 @@ class WebsiteSetting extends Component
     public string $institution_name = '';
     public string $app_tagline = '';
     public string $app_description = '';
+    public string $app_timezone = 'Asia/Jakarta';
     public string $footer_copyright = '';
     public ?string $app_logo = null;
     public ?string $app_favicon = null;
@@ -51,6 +52,7 @@ class WebsiteSetting extends Component
             'institution_name' => ['required', 'string', 'max:150'],
             'app_tagline' => ['nullable', 'string', 'max:255'],
             'app_description' => ['nullable', 'string', 'max:1000'],
+            'app_timezone' => ['required', 'string', 'in:Asia/Jakarta,Asia/Makassar,Asia/Jayapura'],
             'footer_copyright' => ['nullable', 'string', 'max:255'],
             'logoUpload' => ['nullable', 'image', 'mimes:png,jpg,jpeg,svg,webp', 'max:2048'],
             'faviconUpload' => ['nullable', 'file', 'mimes:ico,png,svg,jpg,jpeg', 'max:1024'],
@@ -68,6 +70,7 @@ class WebsiteSetting extends Component
         return [
             'app_name.required' => 'Nama aplikasi wajib diisi.',
             'institution_name.required' => 'Nama institusi / organisasi penyelenggara wajib diisi.',
+            'app_timezone.required' => 'Zona waktu wajib dipilih.',
             'contact_email.email' => 'Format email kontak tidak valid.',
             'logoUpload.image' => 'File logo harus berupa gambar (PNG, JPG, SVG, WebP).',
             'logoUpload.max' => 'Ukuran file logo maksimal 2MB.',
@@ -83,6 +86,7 @@ class WebsiteSetting extends Component
         $this->institution_name = $settings['institution_name'] ?? '';
         $this->app_tagline = $settings['app_tagline'] ?? '';
         $this->app_description = $settings['app_description'] ?? '';
+        $this->app_timezone = $settings['app_timezone'] ?? config('app.timezone', 'Asia/Jakarta');
         $this->footer_copyright = $settings['footer_copyright'] ?? '';
         $this->app_logo = $settings['app_logo'] ?? null;
         $this->app_favicon = $settings['app_favicon'] ?? null;
@@ -154,6 +158,7 @@ class WebsiteSetting extends Component
                 'app_favicon' => $this->app_favicon,
                 'app_tagline' => $this->app_tagline,
                 'app_description' => $this->app_description,
+                'app_timezone' => $this->app_timezone,
                 'footer_copyright' => $this->footer_copyright,
                 'contact_email' => $this->contact_email,
                 'contact_phone' => $this->contact_phone,

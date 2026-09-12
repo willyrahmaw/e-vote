@@ -49,7 +49,7 @@
                         <tr class="hover:bg-slate-50/70 transition">
                             <td class="py-3.5 px-5 text-slate-500 whitespace-nowrap">
                                 <div class="font-bold text-slate-800">{{ $log->created_at->format('d M Y') }}</div>
-                                <div class="text-[10px] text-slate-400">{{ $log->created_at->format('H:i:s T') }}</div>
+                                <div class="text-[10px] text-slate-400">{{ $log->created_at->format('H:i:s') }} {{ \App\Enums\IndonesianTimezone::currentAbbr() }}</div>
                             </td>
                             <td class="py-3.5 px-5">
                                 @if ($log->user)

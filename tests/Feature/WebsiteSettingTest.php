@@ -47,6 +47,7 @@ class WebsiteSettingTest extends TestCase
             ->set('app_name', 'Sistem Pemilihan Digital 2026')
             ->set('institution_name', 'BEM Universitas Nusantara')
             ->set('app_tagline', 'Integritas, Transparansi, dan Akuntabilitas')
+            ->set('app_timezone', 'Asia/Makassar')
             ->set('contact_email', 'kpu@nusantara.ac.id')
             ->set('contact_phone', '+62 899-1234-5678')
             ->set('enable_public_monitor', false)
@@ -59,6 +60,7 @@ class WebsiteSettingTest extends TestCase
         $this->assertEquals('Sistem Pemilihan Digital 2026', Setting::get('app_name'));
         $this->assertEquals('BEM Universitas Nusantara', Setting::get('institution_name'));
         $this->assertEquals('Integritas, Transparansi, dan Akuntabilitas', Setting::get('app_tagline'));
+        $this->assertEquals('Asia/Makassar', Setting::get('app_timezone'));
         $this->assertEquals('kpu@nusantara.ac.id', Setting::get('contact_email'));
         $this->assertEquals('0', Setting::get('enable_public_monitor'));
 

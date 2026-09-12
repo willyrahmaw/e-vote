@@ -47,7 +47,7 @@
 
                 <!-- Digital Clock (Isolated from wire:poll with wire:ignore) -->
                 <div wire:ignore class="text-right hidden sm:block border-l border-slate-200 pl-3">
-                    <div id="live-digital-clock" class="text-sm font-bold text-slate-900 tracking-wider font-mono">--:--:--</div>
+                    <div id="live-digital-clock" data-timezone-abbr="{{ \App\Enums\IndonesianTimezone::currentAbbr() }}" class="text-sm font-bold text-slate-900 tracking-wider font-mono">--:--:-- {{ \App\Enums\IndonesianTimezone::currentAbbr() }}</div>
                     <div id="live-digital-date" class="text-[10px] text-slate-500 font-medium">Hari ini</div>
                 </div>
 
@@ -352,7 +352,7 @@
             <span>Sistem E-Voting Terpadu &bull; Enkripsi Anonim &amp; Terverifikasi</span>
         </div>
         <div class="flex items-center gap-4 text-slate-400">
-            <span>Sinkronisasi Terakhir: <strong class="text-slate-700 font-mono">{{ $stats['updated_at'] ?? now()->format('H:i:s') }}</strong></span>
+            <span>Sinkronisasi Terakhir: <strong class="text-slate-700 font-mono">{{ $stats['updated_at'] ?? now()->format('H:i:s') }} {{ \App\Enums\IndonesianTimezone::currentAbbr() }}</strong></span>
             <span>Tekan <kbd class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-mono text-[10px] border border-slate-300">F11</kbd> untuk Layar Penuh</span>
         </div>
     </footer>

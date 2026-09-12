@@ -128,7 +128,7 @@
                                     @endif
                                 </td>
                                 <td class="py-3.5 px-5 text-slate-500 text-[11px] whitespace-nowrap font-mono">
-                                    {{ $voter->voted_at ? $voter->voted_at->format('d M Y H:i:s') : '-' }}
+                                    {{ $voter->voted_at ? $voter->voted_at->format('d M Y H:i:s') . ' ' . \App\Enums\IndonesianTimezone::currentAbbr() : '-' }}
                                 </td>
                                 <td class="py-3.5 px-5 text-right whitespace-nowrap">
                                     <button 

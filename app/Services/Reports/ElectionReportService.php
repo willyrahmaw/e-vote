@@ -39,7 +39,7 @@ class ElectionReportService
             'statistics' => $stats,
             'results' => $results,
             'integrity_checksum' => strtoupper($integrityChecksum),
-            'generated_at' => now()->translatedFormat('l, d F Y - H:i:s T'),
+            'generated_at' => now()->translatedFormat('l, d F Y - H:i:s') . ' ' . \App\Enums\IndonesianTimezone::currentAbbr(),
             'city' => 'Jakarta',
         ];
     }

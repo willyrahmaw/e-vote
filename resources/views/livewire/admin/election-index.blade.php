@@ -69,9 +69,9 @@
                                     </span>
                                 @endif
                             </td>
-                            <td class="py-4 px-5 text-slate-500">
+                            <td class="py-4 px-5 text-slate-500 whitespace-nowrap">
                                 <div>{{ $election->start_at->format('d M Y, H:i') }}</div>
-                                <div class="text-[10px] text-slate-400">s/d {{ $election->end_at->format('d M Y, H:i') }}</div>
+                                <div class="text-[10px] text-slate-400">s/d {{ $election->end_at->format('d M Y, H:i') }} {{ \App\Enums\IndonesianTimezone::currentAbbr() }}</div>
                             </td>
                             <td class="py-4 px-5 whitespace-nowrap">
                                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold shadow-2xs {{ $election->status->badgeClass() }}">
