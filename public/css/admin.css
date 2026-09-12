@@ -1,0 +1,37 @@
+/* Clean Light Admin Layout & Navigation */
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 0.875rem;
+    border-radius: 0.625rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    transition: all 0.15s ease-in-out;
+}
+
+.sidebar-link.active {
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    font-weight: 600;
+    border: 1px solid #dbeafe;
+}
+
+.sidebar-link:not(.active) {
+    color: #475569;
+}
+
+.sidebar-link:not(.active):hover {
+    background-color: #f8fafc;
+    color: #0f172a;
+}
+
+.table-header {
+    background-color: #f8fafc;
+    color: #475569;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    border-bottom: 1px solid #e2e8f0;
+}

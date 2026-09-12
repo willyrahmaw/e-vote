@@ -1,0 +1,121 @@
+/* Official Election Report & Printable Stylesheet */
+
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 12mm 15mm 15mm 15mm;
+    }
+
+    *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    html, body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 10.5pt !important;
+        line-height: 1.4 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .only-print {
+        display: block !important;
+    }
+
+    .print-card {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    /* Formal Indonesian Kop Surat Divider */
+    .kop-divider {
+        border-top: 3px solid #0f172a !important;
+        border-bottom: 1px solid #0f172a !important;
+        height: 4px !important;
+        margin: 10px 0 16px 0 !important;
+    }
+
+    /* Formal Table Print Borders */
+    table.report-table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        border: 1.5px solid #0f172a !important;
+        margin-top: 6px !important;
+        margin-bottom: 12px !important;
+    }
+
+    table.report-table th, 
+    table.report-table td {
+        border: 1px solid #334155 !important;
+        padding: 6px 10px !important;
+        font-size: 9.5pt !important;
+    }
+
+    table.report-table th {
+        background-color: #f1f5f9 !important;
+        font-weight: bold !important;
+        color: #0f172a !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.025em !important;
+    }
+
+    /* Prevent awkward page breaks across key sections */
+    .avoid-break, 
+    .signatures-grid, 
+    .seal-box, 
+    .stat-grid,
+    table, 
+    tr {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    .page-break {
+        page-break-before: always !important;
+        break-before: page !important;
+    }
+
+    /* Print Badges & Tags */
+    .print-badge {
+        border: 1px solid #cbd5e1 !important;
+        background-color: #f8fafc !important;
+        color: #0f172a !important;
+    }
+}
+
+/* Screen Mode Enhancements */
+.kop-divider {
+    border-top: 3px solid #0f172a;
+    border-bottom: 1px solid #0f172a;
+    height: 4px;
+    margin: 12px 0 18px 0;
+}
+
+table.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #cbd5e1;
+}
+
+table.report-table th, 
+table.report-table td {
+    border: 1px solid #e2e8f0;
+    padding: 8px 12px;
+}
+
+table.report-table th {
+    background-color: #f8fafc;
+    font-weight: 700;
+    color: #1e293b;
+}
